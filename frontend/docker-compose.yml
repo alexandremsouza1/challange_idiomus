@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  json-fake-server:
+    image: node:16-alpine
+    container_name: json-fake-server
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: npx json-fake-server -m dev-mock-server-config.json
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+    networks:
+      - default
+
+networks:
+  default:
+    driver: bridge
